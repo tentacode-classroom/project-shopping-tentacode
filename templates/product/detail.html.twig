@@ -1,5 +1,31 @@
 <html>
     <body>
-        <h1>Produit {{ product_id }}.</h1>
+        <ul>
+            <li>
+                <a href="{{ url('homepage') }}">Page d'accueil</a>
+            </li>
+        </ul>
+
+        <h1>Produit {{ product.id }} - {{ product.upperName }}.</h1>
+
+        {% if product.id > 10 %}
+            <b>c'est superieur à dix.<b>
+        {% else %}
+            <b>c'est inférieur à dix.<b>
+        {% endif %}
+
+        <h2>Liste des fruits {{ fruits|join(', ') }}</h2>
+        <ul>
+            {% for fruit in fruits %}
+                <li>
+                    {% if loop.first %}
+                        [Premier]
+                    {% endif %}
+                    {% if loop.last %}
+                        [Dernier]
+                    {% endif %}
+                    {{ loop.index ~ fruit|reverse|upper }}</li>
+            {% endfor %}
+        </ul>
     </body>
 </html>

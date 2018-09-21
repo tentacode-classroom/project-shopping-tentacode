@@ -1,5 +1,19 @@
 <html>
     <body>
+        <ul>
+            <li>
+                <a href="http://127.0.0.1:8001/">Page d'accueil</a>
+            </li>
+        </ul>
+
         <h1>Accueil</h1>
+        <h2>Liste des chats</h2>
+        <ul>
+            {% for product in products %}
+                <li>
+                    {{ loop.index }} - {{ product.id }} {{ product.name|upper }}
+                </li>
+            {% endfor %}
+        </ul>
     </body>
 </html>

@@ -12,8 +12,30 @@ class ProductController extends AbstractController
      */
     public function index(int $productId)
     {
+        $product = new Product();
+        $product->id = $productId;
+        $product->name = 'Toto';
+
+        $fruits = [
+            'banane',
+            'pomme',
+            'fraise',
+        ];
+
         return $this->render('product/detail.html.twig', [
-            'product_id' => $productId,
+            'product' => $product,
+            'fruits' => $fruits
         ]);
+    }
+}
+
+class Product
+{
+    public $id;
+    public $name;
+
+    public function upperName()
+    {
+        return strtoupper($this->name);
     }
 }
