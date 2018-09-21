@@ -11,7 +11,12 @@
         <ul>
             {% for product in products %}
                 <li>
-                    {{ loop.index }} - {{ product.id }} {{ product.name|upper }}
+                    {{ loop.index }} - 
+                    <a href="{{ path('product_detail', {
+                        'productId': product.id
+                    }) }}">
+                        {{ product.id }} {{ product.name|upper }}
+                    </a>
                 </li>
             {% endfor %}
         </ul>
