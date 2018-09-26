@@ -1,24 +1,19 @@
-<html>
-    <body>
-        <ul>
-            <li>
-                <a href="http://127.0.0.1:8001/">Page d'accueil</a>
-            </li>
-        </ul>
+{% extends 'base.html.twig' %}
 
+{% block content %}
         <h1>Accueil</h1>
         <h2>Liste des chats</h2>
         <ul>
-            {% for product in products %}
+            {% for cat in cats %}
                 <li>
-                    {{ loop.index }} - 
                     <a href="{{ path('product_detail', {
-                        'productId': product.id
+                        'productId': cat.id
                     }) }}">
-                        {{ product.id }} {{ product.name|upper }}
+                        {{ cat.name|upper }} ({{ cat.breed.name }})
                     </a>
                 </li>
             {% endfor %}
         </ul>
     </body>
 </html>
+{% endblock %}

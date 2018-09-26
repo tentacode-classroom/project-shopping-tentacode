@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\CatRepository;
 
 class ProductController extends AbstractController
 {
@@ -12,30 +13,12 @@ class ProductController extends AbstractController
      */
     public function index(int $productId)
     {
-        $product = new Product();
-        $product->id = $productId;
-        $product->name = 'Toto';
+        $catRepository = new CatRepository();
 
-        $fruits = [
-            'banane',
-            'pomme',
-            'fraise',
-        ];
+        $cat = $catRepository->findOneById($productId);
 
         return $this->render('product/detail.html.twig', [
-            'product' => $product,
-            'fruits' => $fruits
+            'cat' => $cat,
         ]);
-    }
-}
-
-class Product
-{
-    public $id;
-    public $name;
-
-    public function upperName()
-    {
-        return strtoupper($this->name);
     }
 }

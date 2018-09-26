@@ -1,31 +1,13 @@
-<html>
-    <body>
-        <ul>
-            <li>
-                <a href="{{ url('homepage') }}">Page d'accueil</a>
-            </li>
-        </ul>
+{% extends 'base.html.twig' %}
 
-        <h1>Produit {{ product.id }} - {{ product.upperName }}.</h1>
+{% block title %}Produit{% endblock %}
 
-        {% if product.id > 10 %}
-            <b>c'est superieur à dix.<b>
-        {% else %}
-            <b>c'est inférieur à dix.<b>
-        {% endif %}
+{% block content %}
+    <h1>Chat - {{ cat.name }}</h1>
 
-        <h2>Liste des fruits {{ fruits|join(', ') }}</h2>
-        <ul>
-            {% for fruit in fruits %}
-                <li>
-                    {% if loop.first %}
-                        [Premier]
-                    {% endif %}
-                    {% if loop.last %}
-                        [Dernier]
-                    {% endif %}
-                    {{ loop.index ~ fruit|reverse|upper }}</li>
-            {% endfor %}
-        </ul>
-    </body>
-</html>
+    <ul>
+        <li>Id : {{ cat.id }}</li>
+        <li>Race : {{ cat.breed.name }}</li>
+        <li>Date de naissance : {{ cat.birthdate|date('d/m/Y') }}</li>
+    </ul>
+{% endblock %}
