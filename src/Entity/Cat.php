@@ -6,6 +6,8 @@ class Cat
 {
     private $id;
     private $name;
+    private $description;
+    private $image;
     private $breed;
     private $birthdate;
 
@@ -27,6 +29,26 @@ class Cat
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function setImage(string $image): void
+    {
+        $this->image = $image;
+    }
+
+    public function getImage(): string
+    {
+        return $this->image;
     }
 
     public function setBreed(Breed $breed): void

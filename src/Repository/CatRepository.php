@@ -18,6 +18,8 @@ class CatRepository
         $cat1 = new Cat();
         $cat1->setId(11);
         $cat1->setName('Shiva');
+        $cat1->setDescription('Shiva est un gros chat affectueux.');
+        $cat1->setImage('/img/cats/shiva.jpg');
         $cat1->setBreed($breed1);
         $cat1->setBirthdate(new \DateTime('-10 years'));
 
@@ -28,6 +30,8 @@ class CatRepository
         $cat2 = new Cat();
         $cat2->setId(12);
         $cat2->setName('Thalie');
+        $cat2->setDescription('Thalie est un chat pot de colle.');
+        $cat2->setImage('/img/cats/thalie.jpg');
         $cat2->setBreed($breed2);
         $cat2->setBirthdate(new \DateTime('-6 years'));
 
@@ -38,6 +42,8 @@ class CatRepository
         $cat3 = new Cat();
         $cat3->setId(13);
         $cat3->setName('Friedriech');
+        $cat3->setDescription('Frifrou est le roi des chats.');
+        $cat3->setImage('/img/cats/frifrou.jpg');
         $cat3->setBreed($breed3);
         $cat3->setBirthdate(new \DateTime('-4 years'));
 

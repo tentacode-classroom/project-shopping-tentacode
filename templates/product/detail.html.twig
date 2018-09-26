@@ -3,11 +3,35 @@
 {% block title %}Produit{% endblock %}
 
 {% block content %}
-    <h1>Chat - {{ cat.name }}</h1>
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <img class="card-img-top" src="{{ asset(cat.image) }} ">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        {{ cat.name }}
+                    </div>
 
-    <ul>
-        <li>Id : {{ cat.id }}</li>
-        <li>Race : {{ cat.breed.name }}</li>
-        <li>Date de naissance : {{ cat.birthdate|date('d/m/Y') }}</li>
-    </ul>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Race :</strong>
+                            {{ cat.breed.name }}
+                        <li class="list-group-item">
+                            <strong>Date de naissance :</strong>
+                            {{ cat.birthdate|date('d/m/Y') }}
+                        </li>
+                    </ul>
+                    
+                    <div class="card-body">
+                        <p class="card-text">{{ cat.description }}</p>
+                        <a href="#" class="card-link">Ajouter au panier</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 {% endblock %}

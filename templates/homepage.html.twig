@@ -1,19 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
+    <main role="main" class="container">
         <h1>Accueil</h1>
         <h2>Liste des chats</h2>
-        <ul>
+
+        <div class="row">
             {% for cat in cats %}
-                <li>
-                    <a href="{{ path('product_detail', {
-                        'productId': cat.id
-                    }) }}">
-                        {{ cat.name|upper }} ({{ cat.breed.name }})
-                    </a>
-                </li>
+                <div class="col-md-3">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ asset(cat.image) }} ">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ cat.name }}</h5>
+                            <p class="card-text">{{ cat.description }}</p>
+                            <a href="{{ path('product_detail', {
+                                'productId': cat.id
+                            }) }}" class="btn btn-primary">Voir le chat</a>
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
-        </ul>
-    </body>
-</html>
+        </div>
+    </main>
 {% endblock %}
