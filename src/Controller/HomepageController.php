@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\CatRepository;
+use App\Entity\Cat;
 
 class HomepageController extends AbstractController
 {
@@ -13,9 +13,9 @@ class HomepageController extends AbstractController
      */
     public function index()
     {
-        $catRepository = new CatRepository();
-
-        $cats = $catRepository->findAll();
+        $doctrine = $this->getDoctrine();
+        $catRepository = $doctrine->getRepository(Cat::class);
+        $cats = $catRepository->findAllCatsHomepage();
 
         return $this->render('homepage.html.twig', [
             'cats' => $cats,

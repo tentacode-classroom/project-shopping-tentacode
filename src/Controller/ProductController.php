@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\CatRepository;
+use App\Entity\Cat;
 
 class ProductController extends AbstractController
 {
@@ -13,9 +13,15 @@ class ProductController extends AbstractController
      */
     public function index(int $productId)
     {
-        $catRepository = new CatRepository();
+        $doctrine = $this->getDoctrine();
+        $carRepository = $doctrine->getRepository(Cat::class);
+        $cat = $carRepository->find($productId);
 
-        $cat = $catRepository->findOneById($productId);
+        $cat->incrementViewCounter();
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($cat);
+        $entityManager->flush();
 
         return $this->render('product/detail.html.twig', [
             'cat' => $cat,

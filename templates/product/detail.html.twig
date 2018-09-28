@@ -13,13 +13,13 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        {{ cat.name }}
+                        {{ cat.name }} - {{ cat.viewCounter }} vues
                     </div>
 
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <strong>Race :</strong>
-                            {{ cat.breed.name }}
+                            {{ cat.breed }}
                         <li class="list-group-item">
                             <strong>Date de naissance :</strong>
                             {{ cat.birthdate|date('d/m/Y') }}
