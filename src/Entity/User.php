@@ -19,21 +19,29 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 6,
+     *      minMessage = "Votre mot de passe doit faire 6 charactères",
+     * )
      */
     private $password;
 
