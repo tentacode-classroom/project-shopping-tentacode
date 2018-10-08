@@ -34,10 +34,6 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(
-     *      min = 6,
-     *      minMessage = "Le password est trop court."
-     * )
      */
     private $password;
 

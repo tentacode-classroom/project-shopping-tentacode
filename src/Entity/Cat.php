@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,11 +24,6 @@ class Cat
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $breed;
-
-    /**
      * @ORM\Column(type="date")
      */
     private $birthdate;
@@ -44,7 +41,23 @@ class Cat
     /**
      * @ORM\Column(type="integer")
      */
-    private $viewCounter;
+    private $viewCounter = 0;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Breed", inversedBy="cats", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $breed;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="cats")
+     */
+    private $tags;
+
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -59,18 +72,6 @@ class Cat
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getBreed(): ?string
-    {
-        return $this->breed;
-    }
-
-    public function setBreed(string $breed): self
-    {
-        $this->breed = $breed;
 
         return $this;
     }
@@ -126,5 +127,43 @@ class Cat
     public function incrementViewCounter()
     {
         $this->viewCounter++;
+    }
+
+    public function getBreed(): ?Breed
+    {
+        return $this->breed;
+    }
+
+    public function setBreed(?Breed $breed): self
+    {
+        $this->breed = $breed;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tag[]
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    public function addTag(Tag $tag): self
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+        }
+
+        return $this;
+    }
+
+    public function removeTag(Tag $tag): self
+    {
+        if ($this->tags->contains($tag)) {
+            $this->tags->removeElement($tag);
+        }
+
+        return $this;
     }
 }

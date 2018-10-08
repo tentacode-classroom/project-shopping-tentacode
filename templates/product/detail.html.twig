@@ -20,6 +20,15 @@
                         <li class="list-group-item">
                             <strong>Race :</strong>
                             {{ cat.breed }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Tags :</strong>
+                            {% for tag in cat.tags %}
+                                <span class="badge badge-primary">
+                                    {{ tag.name }}
+                                </span>
+                            {% endfor %}
+                        </li>
                         <li class="list-group-item">
                             <strong>Date de naissance :</strong>
                             {{ cat.birthdate|date('d/m/Y') }}
