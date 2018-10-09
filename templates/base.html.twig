@@ -30,6 +30,12 @@
       -->
     </nav>
 
+    {% for message in app.flashes('notice') %}
+        <div class="flash alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     {% block content %}{% endblock %}
 
     <!-- Bootstrap core JavaScript

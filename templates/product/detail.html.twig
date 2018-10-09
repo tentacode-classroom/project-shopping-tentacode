@@ -37,7 +37,9 @@
                     
                     <div class="card-body">
                         <p class="card-text">{{ cat.description }}</p>
-                        <a href="#" class="card-link">Ajouter au panier</a>
+                        <a href="{{ path('basket_add', {
+                            'productId': cat.id
+                        }) }}" class="card-link">Ajouter au panier</a>
                     </div>
                 </div>
             </div>
