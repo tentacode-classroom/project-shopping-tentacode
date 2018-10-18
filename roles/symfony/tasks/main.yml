@@ -1,3 +1,6 @@
+- name: Create web directory in srv
+  file: state=directory path=/srv/www/{{ project_name }}
+
 - name: Copy nginx website configuration
   template: src=nginx-host.j2 dest=/etc/nginx/sites-enabled/{{ project_name }}
   notify: restart web services

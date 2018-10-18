@@ -17,3 +17,8 @@
   npm: 
     name: grunt-cli
     global: yes
+
+- name: Install yarn
+  npm: 
+    name: yarn
+    global: yes

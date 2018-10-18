@@ -11,5 +11,12 @@
     - node
     - permission
     - role: symfony
+      front_controller: app.php
+      web_root: /srv/www/tentacode.net/web
       project_name: tentacode.net
       server_names: tentacode.net www.tentacode.net
+    - role: symfony
+      front_controller: index.php
+      web_root: /srv/www/el-professor/public
+      project_name: el-professor
+      server_names: elp.tentacode.net

@@ -1,0 +1,26 @@
+---
+- hosts: tentacode.net
+  vars_files:
+    - credentials.yml
+
+  tasks:
+    - name: Cloning git repository
+      git:
+        repo: https://{{ github_user|urlencode }}:{{ github_password|urlencode }}@github.com/tentacode/el-professor.git
+        dest: /srv/www/el-professor
+
+    - name: Composer install
+      command: composer install
+      args:
+        chdir: /srv/www/el-professor
+
+    - name: Yarn install
+      command: yarn install
+      args:
+        chdir: /srv/www/el-professor
+
+    - name: Yarn build
+      command: yarn encore production
+      args:
+        chdir: /srv/www/el-professor
+        
