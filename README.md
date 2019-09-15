@@ -1,5 +1,7 @@
 # tentacode-server
 
+@TODO : setup MySQL
+
 ## Setup ssh authentication
 
 ### Connect via ssh

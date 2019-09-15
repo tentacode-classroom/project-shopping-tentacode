@@ -2,8 +2,16 @@
 - hosts: tentacode.net
   vars_files:
     - credentials.yml
+    
+  roles:
+    - role: symfony
+      front_controller: index.php
+      web_root: /srv/www/el-professor/public
+      project_name: el-professor
+      server_names: elp.tentacode.net
 
   tasks:
+
     - name: Cloning git repository
       git:
         repo: https://{{ github_user|urlencode }}:{{ github_password|urlencode }}@github.com/tentacode/el-professor.git

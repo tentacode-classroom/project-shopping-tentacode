@@ -1,6 +1,15 @@
 - name: Create web directory in srv
   file: state=directory path=/srv/www/{{ project_name }}
 
+- name: Cloning git repository
+  git:
+    repo: https://{{ github_user|urlencode }}:{{ github_password|urlencode }}@github.com/{{ github_project_name }}
+    dest: /srv/www/{{ project_name }}
+    force: true
+
+- name: Create env file
+  template: src=.env.j2 dest=/srv/www/{{ project_name }}/.env.local
+
 - name: Copy nginx website configuration
   template: src=nginx-host.j2 dest=/etc/nginx/sites-enabled/{{ project_name }}
-  notify: restart web services
+  notify: restart nginx

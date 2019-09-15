@@ -1,0 +1,21 @@
+---
+- hosts: tentacode.dev
+  vars_files:
+    - credentials.yml
+
+  tasks:
+    - name: Cloning git repository
+      git:
+        repo: https://{{ github_user|urlencode }}:{{ github_password|urlencode }}@github.com/tentacode/tentacode.dev.git
+        dest: /srv/www/tentacode.dev
+        force: true
+
+    - name: Build
+      command: make build-prod
+      args:
+        chdir: /srv/www/tentacode.dev
+
+    - name: Clear cache
+      command: bin/console cache:clear --env=prod
+      args:
+        chdir: /srv/www/tentacode.dev

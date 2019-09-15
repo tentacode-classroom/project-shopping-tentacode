@@ -2,6 +2,8 @@
 - hosts: tentacode.net
   become: yes
   become_method: sudo
+  vars_files:
+    - credentials.yml
   
   roles:
     - bash
@@ -10,13 +12,20 @@
     - nginx
     - node
     - permission
-    - role: symfony
-      front_controller: app.php
-      web_root: /srv/www/tentacode.net/web
-      project_name: tentacode.net
-      server_names: tentacode.net www.tentacode.net
+    # - role: symfony
+    #   front_controller: app.php
+    #   web_root: /srv/www/tentacode.net/web
+    #   project_name: tentacode.net
+    #   server_names: tentacode.net www.tentacode.net
     - role: symfony
       front_controller: index.php
       web_root: /srv/www/el-professor/public
       project_name: el-professor
+      github_project_name: tentacode/el-professor
       server_names: elp.tentacode.net
+    - role: symfony
+      front_controller: index.php
+      web_root: /srv/www/tentacode.dev/public
+      project_name: tentacode.dev
+      github_project_name: tentacode/tentacode.dev
+      server_names: tentacode.dev www.tentacode.dev

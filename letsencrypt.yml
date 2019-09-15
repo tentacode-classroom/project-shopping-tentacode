@@ -1,5 +1,5 @@
 ---
-- hosts: tentacode.net
+- hosts: tentacode.dev
   become: yes
   become_method: sudo
   
